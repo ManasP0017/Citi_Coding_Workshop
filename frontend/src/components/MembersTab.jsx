@@ -78,7 +78,7 @@ export default function MembersTab() {
   };
 
   return (
-    <Box>
+    <Box className="animate-fade-in-up">
       <PageHeader
         title="Members"
         count={loading ? undefined : members.length}

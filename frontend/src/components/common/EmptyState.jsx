@@ -26,7 +26,7 @@ export default function EmptyState({ icon: Icon, title, message, actionLabel, on
         {message ?? 'Get started by adding your first item.'}
       </Typography>
       {actionLabel && onAction && (
-        <Button variant="contained" onClick={onAction} sx={{ mt: 1 }}>
+        <Button variant="contained" className="btn-press" onClick={onAction} sx={{ mt: 1 }}>
           {actionLabel}
         </Button>
       )}

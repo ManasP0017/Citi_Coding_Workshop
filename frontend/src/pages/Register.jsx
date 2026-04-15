@@ -73,7 +73,7 @@ export default function Register() {
           px: { xs: 3, sm: 6 }, py: 6, bgcolor: 'background.paper',
         }}
       >
-        <Box sx={{ maxWidth: 360, width: '100%', mx: 'auto' }}>
+        <Box sx={{ maxWidth: 360, width: '100%', mx: 'auto' }} className="animate-scale-in">
           <Typography variant="h4" gutterBottom>Create account</Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
             Fill in the details below to get started
@@ -97,7 +97,7 @@ export default function Register() {
             </TextField>
             <Button
               fullWidth variant="contained" type="submit" size="large"
-              disabled={loading} sx={{ mt: 1, py: 1.3 }}
+              disabled={loading} className="btn-press" sx={{ mt: 1, py: 1.3 }}
               startIcon={loading ? <CircularProgress size={16} color="inherit" /> : null}
             >
               {loading ? 'Creating account…' : 'Create account'}

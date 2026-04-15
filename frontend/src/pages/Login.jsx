@@ -76,7 +76,7 @@ export default function Login() {
           bgcolor: 'background.paper',
         }}
       >
-        <Box sx={{ maxWidth: 360, width: '100%', mx: 'auto' }}>
+        <Box sx={{ maxWidth: 360, width: '100%', mx: 'auto' }} className="animate-scale-in">
           <Typography variant="h4" gutterBottom>Welcome back</Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
             Sign in to your TeamHub account
@@ -108,6 +108,7 @@ export default function Login() {
             <Button
               fullWidth variant="contained" type="submit"
               size="large" disabled={loading}
+              className="btn-press"
               sx={{ mt: 1, py: 1.3 }}
               startIcon={loading ? <CircularProgress size={16} color="inherit" /> : null}
             >

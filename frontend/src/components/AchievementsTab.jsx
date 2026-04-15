@@ -87,7 +87,7 @@ export default function AchievementsTab() {
   };
 
   return (
-    <Box>
+    <Box className="animate-fade-in-up">
       <PageHeader
         title="Achievements"
         count={loading ? undefined : achievements.length}

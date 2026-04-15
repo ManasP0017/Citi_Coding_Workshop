@@ -36,6 +36,7 @@ export default function AppLayout() {
         {/* Page content */}
         <Box
           component="main"
+          className="animate-fade-in"
           sx={{
             flex: 1,
             overflowY: 'auto',

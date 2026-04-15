@@ -35,7 +35,7 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 
-const API_BASE  = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE  = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:3001';
 const SSE_URL   = `${API_BASE}/api/events`;
 const MIN_DELAY = 1_000;   // ms
 const MAX_DELAY = 30_000;  // ms

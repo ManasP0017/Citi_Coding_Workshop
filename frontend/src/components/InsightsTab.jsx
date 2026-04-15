@@ -32,7 +32,7 @@ const PIE_COLORS = ['#3B5BDB', '#F03E3E'];
 function MetricCard({ metric, value, loading }) {
   const { label, icon: Icon, color, bg } = metric;
   return (
-    <Card sx={{ height: '100%' }}>
+    <Card sx={{ height: '100%' }} className="hover-lift">
       <CardContent sx={{ p: 2.5 }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <Box>
@@ -93,7 +93,7 @@ export default function InsightsTab() {
   ];
 
   return (
-    <Box>
+    <Box className="animate-fade-in-up">
       {/* Header */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, flexWrap: 'wrap', gap: 2 }}>
         <Box>
@@ -119,9 +119,9 @@ export default function InsightsTab() {
       {error && <Alert severity="error" sx={{ mb: 3 }} onClose={() => setError('')}>{error}</Alert>}
 
       {/* Metric cards */}
-      <Grid container spacing={2} sx={{ mb: 4 }}>
+      <Grid container spacing={2} sx={{ mb: 4 }} className="stagger-children">
         {METRICS.map(m => (
-          <Grid item xs={12} sm={6} md={4} key={m.key}>
+          <Grid item xs={12} sm={6} md={4} key={m.key} className="hover-lift">
             <MetricCard metric={m} value={data?.[m.key]} loading={loading} />
           </Grid>
         ))}

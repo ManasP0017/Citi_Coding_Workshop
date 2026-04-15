@@ -63,9 +63,8 @@ const server = http.createServer((req, res) => {
   }
 
   const endpointName = pathParts[1];
-  const targetUrl = endpoints[endpointName] + (parsedUrl.search || '');
 
-  if (!targetUrl) {
+  if (!endpoints[endpointName]) {
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
       error: `Unknown endpoint: ${endpointName}`,
@@ -73,6 +72,12 @@ const server = http.createServer((req, res) => {
     }));
     return;
   }
+
+  // Build remaining path after the service name (e.g., /api/auth-service/register -> /register)
+  const remainingPath = '/' + pathParts.slice(2).join('/');
+  // Strip trailing slash from Lambda URL, append remaining path and query string
+  const baseUrl = endpoints[endpointName].replace(/\/$/, '');
+  const targetUrl = baseUrl + remainingPath + (parsedUrl.search || '');
 
   console.log(`${req.method} /api/${endpointName} -> ${targetUrl}`);
 
@@ -90,7 +95,7 @@ const server = http.createServer((req, res) => {
   delete headers['sec-fetch-mode'];
   delete headers['sec-fetch-dest'];
 
-  // Keep only essential headers
+  // Keep essential headers + Authorization for JWT auth
   const options = {
     hostname: target.hostname,
     port: target.port,
@@ -100,7 +105,8 @@ const server = http.createServer((req, res) => {
       'accept': headers.accept || 'application/json',
       'content-type': headers['content-type'] || 'application/json',
       'user-agent': headers['user-agent'] || 'proxy-server',
-      'host': target.host
+      'host': target.host,
+      ...(headers.authorization ? { 'authorization': headers.authorization } : {})
     }
   };
 

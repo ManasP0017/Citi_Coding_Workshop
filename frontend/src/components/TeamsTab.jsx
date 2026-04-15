@@ -73,7 +73,7 @@ export default function TeamsTab() {
   };
 
   return (
-    <Box>
+    <Box className="animate-fade-in-up">
       <PageHeader
         title="Teams"
         count={loading ? undefined : teams.length}

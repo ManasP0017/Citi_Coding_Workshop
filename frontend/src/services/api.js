@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -19,37 +19,37 @@ api.interceptors.request.use((config) => {
 });
 
 export const authAPI = {
-  register: (data) => api.post('/api/auth/register', data),
-  login: (data) => api.post('/api/auth/login', data),
-  getCurrentUser: () => api.get('/api/auth/me'),
+  register: (data) => api.post('/api/auth-service/register', data),
+  login: (data) => api.post('/api/auth-service/login', data),
+  getCurrentUser: () => api.get('/api/auth-service/me'),
 };
 
 export const membersAPI = {
-  create: (data) => api.post('/api/members', data),
-  getAll: (params) => api.get('/api/members', { params }),
-  getById: (id) => api.get(`/api/members/${id}`),
-  update: (id, data) => api.put(`/api/members/${id}`, data),
-  delete: (id) => api.delete(`/api/members/${id}`),
+  create: (data) => api.post('/api/members-service', data),
+  getAll: (params) => api.get('/api/members-service', { params }),
+  getById: (id) => api.get(`/api/members-service/${id}`),
+  update: (id, data) => api.put(`/api/members-service/${id}`, data),
+  delete: (id) => api.delete(`/api/members-service/${id}`),
 };
 
 export const teamsAPI = {
-  create: (data) => api.post('/api/teams', data),
-  getAll: (params) => api.get('/api/teams', { params }),
-  getById: (id) => api.get(`/api/teams/${id}`),
-  update: (id, data) => api.put(`/api/teams/${id}`, data),
-  delete: (id) => api.delete(`/api/teams/${id}`),
+  create: (data) => api.post('/api/teams-service', data),
+  getAll: (params) => api.get('/api/teams-service', { params }),
+  getById: (id) => api.get(`/api/teams-service/${id}`),
+  update: (id, data) => api.put(`/api/teams-service/${id}`, data),
+  delete: (id) => api.delete(`/api/teams-service/${id}`),
 };
 
 export const achievementsAPI = {
-  create: (data) => api.post('/api/achievements', data),
-  getAll: (params) => api.get('/api/achievements', { params }),
-  getById: (id) => api.get(`/api/achievements/${id}`),
-  update: (id, data) => api.put(`/api/achievements/${id}`, data),
-  delete: (id) => api.delete(`/api/achievements/${id}`),
+  create: (data) => api.post('/api/achievements-service', data),
+  getAll: (params) => api.get('/api/achievements-service', { params }),
+  getById: (id) => api.get(`/api/achievements-service/${id}`),
+  update: (id, data) => api.put(`/api/achievements-service/${id}`, data),
+  delete: (id) => api.delete(`/api/achievements-service/${id}`),
 };
 
 export const insightsAPI = {
-  get: () => api.get('/api/insights'),
+  get: () => api.get('/api/insights-service'),
 };
 
 export default api;
